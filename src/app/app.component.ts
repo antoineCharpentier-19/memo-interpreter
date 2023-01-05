@@ -22,6 +22,7 @@ export class AppComponent implements AfterViewInit {
 
     this.calendar = new Calendar('#calendar', {
       defaultView: 'week',
+      taskView: false,
       theme: {
         'week.timegridOneHour.height': `${globalThis.hourHeight}px`,
         'week.timegridHalfHour.height': `${globalThis.hourHeight/2 - 1}px`,
@@ -33,51 +34,27 @@ export class AppComponent implements AfterViewInit {
       let i = 0;
       (data as Array<any>).forEach(element => {
         // element structure is {date, note}
-        const event =
-        // {
-        //   id: i++ +"",
-        //   calendarId: '1',
-        //   title: element.note,
-        //   category: 'time',
-        //   dueDateClass: '',
-        //   bgColor: "blue",
-        //   start: element.date,
-        //   end: element.date
-        // }
-        {
-          id: i++ +"",
-          calendarId: '1',
-          title: 'second schedule',
-          category: 'time',
-          dueDateClass: '',
-          bgColor: "red",
-          start: '2023-01-02:33:00+09:00',
-          end: '2023-01-03:33:00+09:00'
-        }
-        // this.calendar.createSchedules([
-        //   event
-        // ])
+        this.calendar.createSchedules([
+          {
+            id: i++ +"",
+            calendarId: '1',
+            title: element.note,
+            category: 'time',
+            dueDateClass: '',
+            bgColor: "white",
+            start: new Date(element.date),
+            end: new Date(element.date)
+          }
+        ]);
 
       });
-
-      this.calendar.createSchedules([
-        {
-          id: "hohoho",
-          calendarId: '1',
-          title: 'second schedule',
-          category: 'time',
-          dueDateClass: '',
-          bgColor: "red",
-          start: '2023-01-02:33:00+09:00',
-          end: '2023-01-03:33:00+09:00'
-        }
-      ])
-
     });
   }
 
   setWeek() {
     this.calendar.changeView('week');
+    this.calendar.next();
+    this.calendar.prev();
   }
 
   setMonth() {
@@ -85,15 +62,28 @@ export class AppComponent implements AfterViewInit {
   }
 
   next() {
+    const currentScroll = document.querySelector(".tui-full-calendar-timegrid-container").scrollTop;
+
     this.calendar.next();
+
+    setTimeout(() => {
+      document.querySelector(".tui-full-calendar-timegrid-container").scrollTop = currentScroll;
+    });
   }
 
   prev() {
+    const currentScroll = document.querySelector(".tui-full-calendar-timegrid-container").scrollTop;
+
     this.calendar.prev();
+
+    setTimeout(() => {
+      document.querySelector(".tui-full-calendar-timegrid-container").scrollTop = currentScroll;
+    });
   }
 
   nextDayInWeek() {
     const o = this.calendar.getOptions();
+    const currentScroll = document.querySelector(".tui-full-calendar-timegrid-container").scrollTop;
     this.calendar.setOptions({
       ... o,
       week : {
@@ -101,9 +91,17 @@ export class AppComponent implements AfterViewInit {
         startDayOfWeek: o.week.startDayOfWeek+1,
       }
     });
+    this.calendar.next();
+    this.calendar.prev();
+
+    setTimeout(() => {
+      document.querySelector(".tui-full-calendar-timegrid-container").scrollTop = currentScroll;
+    });
   }
 
   prevDayInWeek() {
+    const currentScroll = document.querySelector(".tui-full-calendar-timegrid-container").scrollTop;
+
     const o = this.calendar.getOptions();
     this.calendar.setOptions({
       ... o,
@@ -111,6 +109,10 @@ export class AppComponent implements AfterViewInit {
         ... o.week,
         startDayOfWeek: o.week.startDayOfWeek-1,
       }
+    });
+
+    setTimeout(() => {
+      document.querySelector(".tui-full-calendar-timegrid-container").scrollTop = currentScroll;
     });
   }
 
