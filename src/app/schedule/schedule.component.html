@@ -1,0 +1,21 @@
+<div class="flex options">
+  <div>
+    {{ calendar?.getDate() | date: 'yyyy-MM-dd'}}
+  </div>
+  —
+  <button (click)="setDay()">D</button>
+  <button (click)="setWeek()">W</button>
+  <button (click)="setMonth()">M</button>
+  -
+  <button (click)="prev()"><<</button>
+  <button (click)="next()">>></button>
+  -
+  <button (click)="prevDayInWeek()"><</button>
+  <button (click)="nextDayInWeek()">></button>
+  -
+  <button (click)="zoomIn()">+</button>
+  <button (click)="zoomOut()">-</button>
+
+</div>
+
+<div class="calendar" [id]="id"></div>

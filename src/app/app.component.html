@@ -1,14 +1,38 @@
-<div class="flex options">
+search:
+<input type="text" [value]="memoService.search$ | async" (keydown.enter)="memoService.search$.next($event.target.value)"/>
+--
+panels :
+<input type="number" [(ngModel)]="nbPanels">
+<!-- <div class="flex options">
+  <div>
+    {{ calendar?.getDate() | date: 'yyyy-MM-dd'}}
+  </div>
+  —
+  <button (click)="setDay()">Day</button>
   <button (click)="setWeek()">Week</button>
   <button (click)="setMonth()">Month</button>
-  <button (click)="next()">>></button>
+  -
   <button (click)="prev()"><<</button>
-
-  <button (click)="nextDayInWeek()">></button>
+  <button (click)="next()">>></button>
+  -
   <button (click)="prevDayInWeek()"><</button>
-
+  <button (click)="nextDayInWeek()">></button>
+  -
   <button (click)="zoomIn()">+</button>
   <button (click)="zoomOut()">-</button>
+  -
+  <input type="text" [(ngModel)]="search" (keydown.enter)="getMemos()"/>
+  -
+  <span>Highlight ?</span><input type="checkbox" [(ngModel)]="highlightResults"/>
+
 </div>
 
-<div id="calendar"></div>
+<div id="calendar"></div> -->
+<div class="content">
+  <ng-container *ngFor="let i of arrayOf(nbPanels)">
+    <schedule></schedule>
+    <div *ngIf="i != nbPanels - 1"
+      class="splitter"
+    ></div>
+  </ng-container>
+</div>

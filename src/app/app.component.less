@@ -1,3 +1,19 @@
-#calendar {
-  height: 90vh;
+.content {
+  display:flex;
+  flex-direction: row;
+
+  &> schedule {
+    flex-grow: 1;
+    min-width: 0;
+  }
+}
+:host{
+  padding-top: 5px;
+  padding-left: 5px;
+  display: block;
+}
+
+.splitter {
+  width: 5px;
+  background-color: rgb(166, 166, 166);
 }

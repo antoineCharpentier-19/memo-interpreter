@@ -1,16 +1,76 @@
 @import "../node_modules/tui-calendar/dist/tui-calendar.css";
 /* You can add global styles to this file, and also import other style files */
 
+*{
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: auto;
+}
+
+
 .flex {
   display: flex;
 }
 
+.tui-full-calendar-timegrid-hour {
+  font-size: 20px !important;
+  color: black !important;
+}
+
+.tui-full-calendar-timegrid-gridline {
+  border-bottom: solid 2px rgb(148, 172, 207) !important;
+}
+
+.tui-full-calendar-dayname-date-area {
+  font-size: 20px !important;
+}
 
 .tui-full-calendar-weekday-resize-handle, .tui-full-calendar-time-resize-handle {
   display: none;
 }
 
 .tui-full-calendar-time-schedule-content {
-  border: solid 1px black;
+  border: none;
+
   border-bottom: 3px solid black;
+}
+
+.tui-full-calendar-time-schedule {
+  border: solid 1px white;
+  border-color: white !important;
+  border-bottom: 3px solid white;
+  border-bottom: none;
+  padding-right: 5px;
+  // width: min-content;
+  // a slim font
+}
+
+.tui-full-calendar-extra-date {
+  background-color: rgb(218, 218, 218) !important;
+
+  & * {
+    opacity: 0;
+  }
+}
+
+.tui-full-calendar-dayname-leftmargin {
+  margin-left: 30px !important;
+}
+
+.tui-full-calendar-timegrid-left {
+  width: 30px !important;
+}
+
+.tui-full-calendar-timegrid-right {
+  margin-left: 30px !important;
+}
+
+.tui-full-calendar-left {
+  width: 30px !important;
 }

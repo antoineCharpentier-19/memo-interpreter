@@ -1,0 +1,14 @@
+div{
+  min-width: 10px;
+  min-height: 10px;
+  height: 100%;
+  background-color: rgb(166, 166, 166);
+
+  &.vertical {
+    cursor: row-resize;
+  }
+
+  &:not(.vertical) {
+    cursor: col-resize;
+  }
+}
